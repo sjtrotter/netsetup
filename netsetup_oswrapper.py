@@ -56,16 +56,22 @@ class OSWrapper():
    - set_fw_profile
   """
   def __init__(self, os=None):
-  """__init__ method, initializes
-  class.  Returns error if os is
-  not defined; sets self.os if it is.
+  """__init__ method, initializes class. Returns error if os is
+  not defined; sets self.os if it is.  Also sets directory
+  variables based on OS.
   """
 
     self.os = os
-
+    
     if ( self.os == None ):
-      raise AssertionError
+      self._die("no OS has been defined.")
+    
+    #possibly... add directory definitions here, based on OS.
 
+  def _die(self, message=""):
+    print("{}: cannot stat: {}".format(__file__, message), file=sys.stderr)
+    exit()
+    
   def get_hostname(self):
   """Returns the current hostname.
   Commands:
@@ -102,3 +108,205 @@ class OSWrapper():
   Commands:
   - Windows - 
   - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_hwaddress(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_ipaddress(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def add_ipaddress(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def del_ipaddress(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_gateway(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_gateway(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def del_gateway(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_netmask(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_netmask(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_dns(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def add_dns(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def del_dns(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_ntp(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_ntp(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_trusted(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_targets(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_exclude(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def get_fw_rule(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_fw_rule(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def del_fw_rule(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+  
+  def set_fw_profile(self):
+  """Returns current hardware address.
+  Commands:
+  - Windows - 
+  - Linux   - 
+  """
+    #code here
+    pass
+   
+def main():
+  """main function, only runs if name==main.
+  Will input unit tests here.
+  """
+  #code here
+  pass
+
+if ( __name__ == "__main__" ):
+  main()
