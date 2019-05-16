@@ -46,9 +46,17 @@ class OSWrapper():
    - get_ntp
    - set_ntp
 
+   - get_trusted
    - set_trusted
+   - del_trusted
+   
+   - get_targets
    - set_targets
+   - del_targets
+   
+   - get_exclude
    - set_exclude
+   - del_exclude
 
    - get_fw_rule
    - set_fw_rule
@@ -87,6 +95,9 @@ class OSWrapper():
   - Windows - wmic computersystem where name=OLDNAME call rename name={}
   - Linux   - hostnamectl set-hostname {}
   ====
+  Arguments:
+  - hostname - the hostname to set
+  ====
   Returns:
   - 0 - successful
   - 1 - unsuccessful
@@ -112,17 +123,24 @@ class OSWrapper():
     #code here
     pass
   
-  def set_hwaddress(self):
-  """Returns current hardware address.
+  def set_hwaddress(self, hwaddress=""):
+  """Sets the hardware address.
   Commands:
   - Windows - 
   - Linux   - 
+  ====
+  Arguments:
+  - hwaddress - the MAC address to set
+  ====
+  Returns:
+  - 0 - successful
+  - 1 - unsuccessful
   """
     #code here
     pass
   
   def get_ipaddress(self):
-  """Returns current hardware address.
+  """Returns current IP address(es).
   Commands:
   - Windows - 
   - Linux   - 
@@ -130,8 +148,8 @@ class OSWrapper():
     #code here
     pass
   
-  def add_ipaddress(self):
-  """Returns current hardware address.
+  def add_ipaddress(self, ipaddress=""):
+  """Adds IP address.
   Commands:
   - Windows - 
   - Linux   - 
