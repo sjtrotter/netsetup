@@ -71,6 +71,8 @@ class OSWrapper():
     if ( self.os == None ):
       self._die("no OS has been defined.")
     
+    # Add input checking to ensure either Windows or Linux was set.
+
     #possibly... add directory definitions here, based on OS.
 
   def _die(self, message=""):
@@ -323,8 +325,20 @@ def main():
   """
   #code here
 
-  # Unit Test: die if no OS providex
+  # Unit Test: die if no OS provided
   netset = OSWrapper()
+
+  # Unit Test: die if OS provided is not Linux or Windows
+  netset = OSWrapper(os="Darwin")
+
+  # Unit Test: Set OS. Comment out one of these to test the other.
+  # - also... only test on that actual OS.
+  netset = OSWrapper(os="Linux")
+  #netset = OSWrapper(os="Windows")
+
+  # Unit Test: get_hostname
+  print("hostname: {}".format(netset.get_hostname()))
+  
 
 if ( __name__ == "__main__" ):
   main()
