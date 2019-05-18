@@ -4,7 +4,7 @@
 This module is a wrapper class that implements os-specific commands
 for use by the netsetup script.
 """
-import sys
+import sys, subprocess
 
 class OSWrapper():
   """OS wrapper class. Binds commands into functions based on the
@@ -79,7 +79,30 @@ class OSWrapper():
     print("{}: cannot stat: {}".format(__file__, \
       message), file=sys.stderr)
     exit()
-    
+
+
+  def _run_cmd(self, cmd=None):
+    """Runs shell command given.
+    ====
+    Arguments:
+    - cmd - command to run
+    ====
+    Returns:
+    Tuple with stdout, stderr, and exit code
+    """
+    if ( cmd != None ):
+      out = subprocess.Popen(cmd, stdout=subprocess.PIPE, \
+                                  stderr=subprocess.PIPE)
+      stdout, stderr = out.communicate()
+      exit = out.returncode
+      stdout = str(stdout, 'utf-8').strip()
+      stderr = str(stderr, 'utf-8').strip()
+      output = [ stdout, stderr, exit ]
+
+      return output
+    else:
+      return 1
+
   def get_hostname(self):
     """Returns the current hostname.
     Commands:
@@ -87,7 +110,13 @@ class OSWrapper():
     - Linux   - hostname
     """
     #code here
-    pass
+    cmd = "hostname"
+    stdout, stderr, exit = self._run_cmd(cmd)
+    if ( exit == 0 ):
+      return stdout
+    else:
+      die("{} returned an error")
+
 
   def set_hostname(self, hostname="mip"):
     """Sets the hostname.
@@ -326,10 +355,10 @@ def main():
   #code here
 
   # Unit Test: die if no OS provided
-  netset = OSWrapper()
+  #netset = OSWrapper()
 
   # Unit Test: die if OS provided is not Linux or Windows
-  netset = OSWrapper(os="Darwin")
+  #netset = OSWrapper(os="Darwin")
 
   # Unit Test: Set OS. Comment out one of these to test the other.
   # - also... only test on that actual OS.
@@ -337,7 +366,7 @@ def main():
   #netset = OSWrapper(os="Windows")
 
   # Unit Test: get_hostname
-  print("hostname: {}".format(netset.get_hostname()))
+  #print("hostname: {}".format(netset.get_hostname()))
   
 
 if ( __name__ == "__main__" ):
