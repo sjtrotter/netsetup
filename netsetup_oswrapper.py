@@ -81,7 +81,7 @@ class OSWrapper():
     exit()
 
 
-  def _run_cmd(self, cmd=None):
+  def _run_cmd(self, cmd=None, stdin=None):
     """Runs shell command given.
     ====
     Arguments:
@@ -91,9 +91,12 @@ class OSWrapper():
     Tuple with stdout, stderr, and exit code
     """
     if ( cmd != None ):
-      out = subprocess.Popen(cmd, stdout=subprocess.PIPE, \
+      out = subprocess.Popen(cmd, stdin=subprocess.PIPE,
+                                  stdout=subprocess.PIPE, \
                                   stderr=subprocess.PIPE)
-      stdout, stderr = out.communicate()
+      if ( stdin != None ):
+        stdin = bytes(stdin, 'utf-8')
+      stdout, stderr = out.communicate(input=stdin)
       exit = out.returncode
       stdout = str(stdout, 'utf-8').strip()
       stderr = str(stderr, 'utf-8').strip()
@@ -115,7 +118,7 @@ class OSWrapper():
     if ( exit == 0 ):
       return stdout
     else:
-      die("{} returned an error")
+      die("{} returned an error".format(cmd))
 
 
   def set_hostname(self, hostname="mip"):
@@ -143,15 +146,23 @@ class OSWrapper():
     #code here
     pass
 
-  def get_hwaddress(self):
+  def get_hwaddress(self, iface="enp2s0"):
     """Returns current hardware address.
     Commands:
-    - Windows - 
-    - Linux   - 
+    - Windows - ...ipconfig?
+    - Linux   - Maybe .. run an arp on 127.0.0.1?
     """
     #code here
-    pass
-  
+    if ( self.os == "Linux" ):
+      cmd = [ "ethtool", "-P", iface ]
+      stdout, stderr, exit = self._run_cmd(cmd) 
+      cmd = [ "awk", "{'print $3'}" ]
+      stdout, stderr, exit = self._run_cmd(cmd, stdin=stdout)
+      if ( exit == 0 ):
+        return stdout
+      else:
+        self._die("{} returned an error".format(cmd))
+ 
   def set_hwaddress(self, hwaddress=""):
     """Sets the hardware address.
     Commands:
@@ -367,6 +378,9 @@ def main():
 
   # Unit Test: get_hostname
   #print("hostname: {}".format(netset.get_hostname()))
+
+  # Unit test: get_hwaddress
+  print("hwaddress: {}".format(netset.get_hwaddress()))
   
 
 if ( __name__ == "__main__" ):
