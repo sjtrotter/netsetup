@@ -139,12 +139,16 @@ class OSWrapper():
     # set default hostname based on OS
     if ( hostname =="mip" ):
       if   ( self.os == "Windows" ):
-        hostname = "win-mip"
+        mac = self.get_hwaddress().split('-')
+        mac_l4 = mac[-2] + mac[-1]
+        hostname = "win-" + mac_l4
       elif ( self.os == "Linux" ):
-        hostname = "nix-mip"
+        mac = self.get_hwaddress().split(':')
+        mac_l4 = mac[-2] + mac[-1]
+        hostname = "nix-" + mac_l4
 
     #code here
-    pass
+    return hostname
 
   def get_hwaddress(self, iface="enp2s0"):
     """Returns current hardware address.
@@ -388,8 +392,11 @@ def main():
   # Unit Test: get_hostname
   #print("hostname: {}".format(netset.get_hostname()))
 
+  # Unit Test: set_hostname (default)
+  print("hostname: {}".format(netset.set_hostname()))
+
   # Unit test: get_hwaddress
-  print("hwaddress: {}".format(netset.get_hwaddress()))
+  #print("hwaddress: {}".format(netset.get_hwaddress()))
   
 
 if ( __name__ == "__main__" ):
