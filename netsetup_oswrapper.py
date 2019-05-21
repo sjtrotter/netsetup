@@ -97,10 +97,10 @@ class OSWrapper():
       if ( stdin != None ):
         stdin = bytes(stdin, 'utf-8')
       stdout, stderr = out.communicate(input=stdin)
-      exit = out.returncode
+      exit_code = out.returncode
       stdout = str(stdout, 'utf-8').strip()
       stderr = str(stderr, 'utf-8').strip()
-      output = [ stdout, stderr, exit ]
+      output = [ stdout, stderr, exit_code ]
 
       return output
     else:
@@ -154,11 +154,12 @@ class OSWrapper():
     """
     #code here
     if ( self.os == "Linux" ):
-      cmd = [ "ethtool", "-P", iface ]
-      stdout, stderr, exit = self._run_cmd(cmd) 
-      cmd = [ "awk", "{'print $3'}" ]
-      stdout, stderr, exit = self._run_cmd(cmd, stdin=stdout)
-      if ( exit == 0 ):
+      cmd = [ "ip", "a", "sho", "dev", iface ]
+      stdout, stderr, exit_code = self._run_cmd(cmd) 
+      cmd = [ "grep", "ether" ]
+      stdout, stderr, exit_code = self._run_cmd(cmd, stdin=stdout)
+      if ( exit_code == 0 ):
+        stdout = stdout.split(' ')[1]
         return stdout
       else:
         self._die("{} returned an error".format(cmd))
