@@ -163,6 +163,14 @@ class OSWrapper():
         return stdout
       else:
         self._die("{} returned an error".format(cmd))
+
+    elif ( self.os == "Windows" ):
+      cmd = [ "powershell", "-c", "ipconfig /all | findstr Physical | %{ $_.Split(':')[1]; }" ]
+      stdout, stderr, exit_code = self._run_cmd(cmd)
+      if ( exit_code == 0 ):
+        return stdout
+      else:
+        self._die("{} returned an errer".format(cmd))
  
   def set_hwaddress(self, hwaddress=""):
     """Sets the hardware address.
