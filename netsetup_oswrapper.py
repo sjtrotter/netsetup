@@ -118,7 +118,7 @@ class OSWrapper():
     if ( exit == 0 ):
       return stdout
     else:
-      die("{} returned an error".format(cmd))
+      self._die("{} returned an error".format(cmd))
 
 
   def set_hostname(self, hostname="mip"):
