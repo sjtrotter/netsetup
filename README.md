@@ -1,7 +1,18 @@
 # netsetup
 `netsetup` aims to be a frontend for multiple lower level programs that deal with networking. Things like hostnames, NTP, DNS servers, DHCP vs manual configuration, IP address, MAC address, netmask, gateway, firewall rules .. (this list may not be all-inclusive). Once more fully feature-complete, I'll change this to a list of items instead.
 
+Structure: Currently, my idea is to have one main class (oswrapper) that defines all the methods we need to accomplish. Then, we should be able to write child classes that overwrite methods from the parent class; and we can instantiate the child class based on the OS we think we are.
+
+For example: OSControl = oswrapper(platform.system())
+within oswrapper __init__: logic that returns the child class instead of itself? Or... instantiates the child, and uses the child if defined within its own methods...
+
 ![screenshot?]()
+
+TODO:
+[] GUI frontend?
+[] Write oswrapper class to define everything we need to be able to do
+[] Write subclasses inheriting from oswrapper class that redefine methods as neccessary? (I'm still trying to decide what the best sort of inheritance would be best, if any...)
+
 
 ## Installation
 
