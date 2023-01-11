@@ -4,7 +4,7 @@
 This module is a wrapper class that implements os-specific commands
 for use by the netsetup script.
 """
-import sys, subprocess
+import platform
 
 class OSWrapper():
     """OS wrapper class. Binds commands into functions based on the
@@ -139,15 +139,13 @@ class OSWrapper():
         # set default hostname based on OS
         if ( hostname =="mip" ):
             if   ( self.os == "Windows" ):
-                mac = self.get_hwaddress().split('-')
-                mac_l4 = mac[-2] + mac[-1]
+                mac_l4 = "".join(self.get_hwaddress().split('-')[-2:])
                 hostname = "win-" + mac_l4
             elif ( self.os == "Linux" ):
-                mac = self.get_hwaddress().split(':')
-                mac_l4 = mac[-2] + mac[-1]
+                mac_l4 = "".join(self.get_hwaddress().split(':')[-2:])
                 hostname = "nix-" + mac_l4
 
-        #code here
+        #code here to actually set hostname
         return hostname
 
     def get_hwaddress(self, iface="enp2s0"):
@@ -386,7 +384,7 @@ def main():
 
     # Unit Test: Set OS. Comment out one of these to test the other.
     # - also... only test on that actual OS.
-    netset = OSWrapper(os="Linux")
+    netset = OSWrapper(os=platform.system())
     #netset = OSWrapper(os="Windows")
 
     # Unit Test: get_hostname
