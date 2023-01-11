@@ -1,30 +1,26 @@
 # netsetup
-Networking setup script, Windows and RHEL independent. Provides a single commandline interface for setting the following:  hostname; MAC address; IP address (manual or dynamic); firewall profile; and allowed/disallowed input and output networks/hosts.
+`netsetup` aims to be a frontend for multiple lower level programs that deal with networking. Things like hostnames, NTP, DNS servers, DHCP vs manual configuration, IP address, MAC address, netmask, gateway, firewall rules .. (this list may not be all-inclusive). Once more fully feature-complete, I'll change this to a list of items instead.
 
 ![screenshot?]()
 
 ## Installation
 
-Nothing extra required other than a current Python3 installation with standard libraries installed. Utilizes sys, argparse, ipaddress, and random modules.
+Previous: Nothing extra required other than a current Python3 installation with standard libraries installed. Utilizes sys, argparse, ipaddress, and random modules.
+
+Now: Standby. I'll rewrite this section as needed. It may turn out we need some non-standard modules.
 
 ## Usage example
 
-If you have chmod'd the script to +x:
-```
-netexpand.py 192.168.1.0/30
-192.168.1.1
-192.168.1.2
-```
-Otherwise:
-```
-python3 netexpand.py 192.168.1.0/30 -r
-192.168.1.2
-192.168.1.1
-```
+Usage examples will be coming after development.
 
 ## Development setup
 
-Same as install, nothing special here. Just need a working Python3 install, with sys and argparse modules.
+I like using VSCode, but YMMV. The most important thing is to make sure you are on the latest development branch when contributing.
+
+- Clone the repository (upper-right Code button, or): `git clone https://github.com/sjtrotter/netsetup.git`
+- Checkout the latest version: `git checkout X.Y.Z`
+- Set origin: `git push --set-upstream origin X.Y.Z`
+- Pull latest updates: `git pull`
 
 ## Release History
 
@@ -37,15 +33,15 @@ Stephen Trotter – stephen.j.trotter@gmail.com
 
 Distributed under the GNU GPLv3 license. See ``LICENSE`` for more information.
 
-[https://github.com/sjtrotter/netexpand](https://github.com/sjtrotter/)
+[https://github.com/sjtrotter/netsetup](https://github.com/sjtrotter/)
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/sjtrotter/netsetup/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[wiki]: https://github.com/sjtrotter/netexpand/wiki
+[wiki]: https://github.com/sjtrotter/netsetup/wiki
