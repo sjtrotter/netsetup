@@ -317,7 +317,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def set_targets(self):
         """Returns current hardware address.
         Commands:
@@ -326,7 +326,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def set_exclude(self):
         """Returns current hardware address.
         Commands:
@@ -335,7 +335,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def get_fw_rule(self):
         """Returns current hardware address.
         Commands:
@@ -344,7 +344,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def set_fw_rule(self):
         """Returns current hardware address.
         Commands:
@@ -353,7 +353,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def del_fw_rule(self):
         """Returns current hardware address.
         Commands:
@@ -362,7 +362,7 @@ class OSWrapper():
         """
         #code here
         pass
-  
+    
     def set_fw_profile(self):
         """Returns current hardware address.
         Commands:
